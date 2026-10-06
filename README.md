@@ -1,6 +1,6 @@
 # Artificial Protozoa Optimizer experiments
 
-This project implements the Artificial Protozoa Optimizer (APO), three APO
+This project implements the Artificial Protozoa Optimizer (APO), two APO
 variants, a constrained spring-design benchmark, and a reproducible comparison
 pipeline. The canonical full experiment compares **APO, APO-wr, APO-DE, APO-LS,
 and APO-PSO** under a common evaluation budget. All full-run CSVs and plots are
