@@ -33,7 +33,7 @@ results_all\
   convergence.csv        Best-so-far trace at each evaluation checkpoint
   summary.csv            Descriptive statistics per method
   statistics.csv         Paired Wilcoxon tests with Holm correction
-  figures\               Four plots derived from those CSVs
+  figures\               Five plots derived from those CSVs
 requirements.txt         Python dependencies
 assignment1.md           Course assignment description
 ```
@@ -112,6 +112,26 @@ and APO-PSO median was `0.0127387`; neither differed significantly from APO
 after correction. The complete values and comparisons are in `summary.csv`
 and `statistics.csv`; consult those files if the experiment is rerun.
 
+## Results figures
+
+The plots below are generated from the full experiment in `results_all\figures\`.
+
+### Convergence
+
+![Median best-so-far penalized fitness over the full evaluation budget](results_all/figures/convergence.png)
+
+![Early-budget convergence detail](results_all/figures/convergence_detail.png)
+
+### Final performance and feasibility
+
+![Distribution of final penalized fitness by method](results_all/figures/final_fitness.png)
+
+![Feasible-run rate by method](results_all/figures/feasibility.png)
+
+### Best feasible designs
+
+![Best feasible spring design found by each method](results_all/figures/best_designs.png)
+
 ## Setup (Windows PowerShell)
 
 From the project root:
@@ -156,6 +176,7 @@ visualizer reads those files and writes:
 - `convergence_detail.png` — early-budget convergence detail.
 - `final_fitness.png` — final penalized-fitness distributions.
 - `feasibility.png` — feasible-run rate by method.
+- `best_designs.png` — best feasible spring design found by each method.
 
 The plotter checks that each run has a convergence trace and that the trace's
 last value matches its final result. It does not execute optimizers.
