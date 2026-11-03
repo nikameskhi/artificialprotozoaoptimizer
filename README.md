@@ -218,3 +218,10 @@ modeling/experimental decisions that should be stated in any report. The
 results cannot be generalized from this one problem alone. Cite the article
 and disclose the use/adaptation of external source code and generative tools
 as required by the course.
+
+
+## Documentation
+
+The project documentation is available here:
+
+- [Technical Documentation (PDF)](docs/project_documentation.pdf)
