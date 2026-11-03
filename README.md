@@ -224,4 +224,4 @@ as required by the course.
 
 The project documentation is available here:
 
-- [Technical Documentation (PDF)](docs/project_documentation.pdf)
+- [Technical Documentation (PDF)](docs/APO.pdf)
