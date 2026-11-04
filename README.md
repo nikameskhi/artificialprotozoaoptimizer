@@ -39,7 +39,6 @@ results_all\
   statistics.csv         Paired Wilcoxon tests with Holm correction
   figures\               Five plots derived from those CSVs
 requirements.txt         Python dependencies
-assignment1.md           Course assignment description
 ```
 
 `results_all\` is the single authoritative results directory. Previous
