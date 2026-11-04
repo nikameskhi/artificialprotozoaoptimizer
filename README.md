@@ -1,10 +1,10 @@
 # Artificial Protozoa Optimizer experiments
 
-This project implements the Artificial Protozoa Optimizer (APO), two APO
+This project implements the Artificial Protozoa Optimizer (APO), eight APO-based
 variants, a constrained spring-design benchmark, and a reproducible comparison
-pipeline. The canonical full experiment compares **APO, APO-wr, APO-DE, APO-LS,
-and APO-PSO** under a common evaluation budget. All full-run CSVs and plots are
-stored together in `results_all\`.
+pipeline. The full experiment compares **APO, APO-wr, APO-DE, APO-LS,
+APO-PSO, APO-wr-DE, APO-wr-LS, and APO-wr-PSO** under a common evaluation
+budget. All full-run CSVs and plots are stored together in `results_all\`.
 
 The reference APO paper is Wang et al., *Artificial Protozoa Optimizer (APO):
 A novel bio-inspired metaheuristic algorithm for engineering optimization*,
@@ -12,8 +12,9 @@ A novel bio-inspired metaheuristic algorithm for engineering optimization*,
 [doi:10.1016/j.knosys.2024.111737](https://doi.org/10.1016/j.knosys.2024.111737).
 The spring benchmark experiment below is an additional engineering-problem
 comparison; it should not be mistaken for an exact reproduction of the paper's
-CEC benchmark experiments. APO-DE, APO-LS, and APO-PSO are project extensions,
-not algorithms proposed by the paper.
+CEC benchmark experiments. APO-DE, APO-LS, APO-PSO, APO-wr-DE, APO-wr-LS, and
+APO-wr-PSO are project extensions or hybrids built for this repository, not
+algorithms proposed by the paper.
 
 ## Project contents
 
@@ -24,6 +25,9 @@ algorithms\
   apo_de.py              APO with DE/rand/1/bin candidates
   apo_ls.py              APO with shrinking local-search candidates
   apo_pso.py             APO with PSO candidates
+  apo_wr_de.py           APO-wr hybrid with DE/rand/1/bin candidates
+  apo_wr_ls.py           APO-wr hybrid with local-search candidates
+  apo_wr_pso.py          APO-wr hybrid with PSO candidates
   spring_design.py       Spring objective, constraints, and bounds
   run_experiments.py     Matched-seed experiment, CSVs, and statistics
   visualize_results.py   Plots generated from experiment CSVs
@@ -83,11 +87,17 @@ evaluation.
 | APO-DE | Replaces 20% of generation candidates with `DE/rand/1/bin` (`F=0.5`, `CR=0.9`) |
 | APO-LS | Replaces 10% with Gaussian perturbations around the best solution; neighborhood shrinks over time |
 | APO-PSO | Replaces 10% with PSO velocity updates; inertia decreases from 0.9 toward 0.4 |
+| APO-wr-DE | Rank-weighted APO combined with `DE/rand/1/bin` candidates |
+| APO-wr-LS | Rank-weighted APO combined with shrinking local-search perturbations |
+| APO-wr-PSO | Rank-weighted APO combined with PSO velocity updates |
 
 Hybrid candidates use generation slots that APO would otherwise update.
 Accordingly, these variants do not receive extra objective evaluations. The
 APO-LS and APO-PSO percentages and update rules are experimental choices for
-this project, not claims of canonical hybrid algorithms.
+this project, not claims of canonical hybrid algorithms. The APO-wr-DE,
+APO-wr-LS, and APO-wr-PSO variants are project extensions built to evaluate
+whether rank-based weighting improves the same hybrid mechanisms in a fair
+matched-seed comparison.
 
 ## Experimental protocol
 
@@ -105,12 +115,13 @@ the 10 comparisons. These tests evaluate observed differences on this
 benchmark and configuration only; they do not establish general superiority
 on other problems.
 
-Current summary: all five methods had 100% feasible runs. APO-DE had the
-lowest median penalized fitness (`0.0126959`) and was significantly better
-than APO after Holm correction (`p = 0.000126`). APO-LS median was `0.0127584`
-and APO-PSO median was `0.0127387`; neither differed significantly from APO
-after correction. The complete values and comparisons are in `summary.csv`
-and `statistics.csv`; consult those files if the experiment is rerun.
+Current summary: all eight methods had 100% feasible runs. The full results in
+`summary.csv` show the best median penalized fitness among the tested set is
+achieved by APO-wr and APO-DE depending on the exact comparison metric, while
+APO-wr-DE also performs strongly and remains statistically better than APO in
+paired Wilcoxon testing after Holm correction. The complete values and
+comparisons are in `summary.csv` and `statistics.csv`; consult those files if
+the experiment is rerun.
 
 ## Results figures
 
